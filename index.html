@@ -13,6 +13,15 @@
 				color: black;
 			}
 		</style>
+		
+		<script>
+  			function resizeIframe(navFrame)
+  			{
+    			obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+ 			}
+		</script>
+		
+		<script src="jquery.js"></script>
 	</head>
 	<body>
 		<div style="text-align:center">
@@ -22,14 +31,21 @@
 				<p>Restaurant and Catering</p>
 			</div>
 			
+			<div class="sizeHide">
+				<nav>
+					<a href="index.html">Welcome</a> •
+					<a href="placeholder.html">Specials</a> •
+					<a href="placeholder.html">Contact Us</a> •
+					<a href="placeholder.html">What's New</a> •
+					<a href="placeholder.html">Activities</a>
+				</nav>
+			</div>
 			
-			<nav>
-				<a href="index.html">Welcome</a> •
-				<a href="placeholder.html">Specials</a> •
-				<a href="placeholder.html">Contact Us</a> •
-				<a href="placeholder.html">What's New</a> •
-				<a href="placeholder.html">Activities</a>
-			</nav>
+			<div class="sizeShow">
+				<div class="menu">
+					<iframe src="Embed/Hamburger/menu.html" name="navMenu" frameborder="0" allowfullscreen width="100%" height="100%" style="padding:0px; margin:0;" onclick="resizeIframe(this)" scrolling="no"></iframe>
+				</div>
+			</div>
 			
 			<br>
 			
