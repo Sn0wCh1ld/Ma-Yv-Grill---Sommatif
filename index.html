@@ -6,7 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<meta name="description" content="Authentic Congolese Cuisine">
 		<link href="styles.css" rel="stylesheet">
-		
+		<script type="text/javascript" src="jquery.js"></script>
+				
 		<style>
 			placeholder a
 			{
@@ -20,10 +21,10 @@
 				obj.style.height = obj.contentWindow.document.body.scrollHeight*1.3 + 'px';
 			}
 			
-			$(".contentContainer").innerHTML("welcome.html");
+			
+			$("#contentContainerDiv").load("welcome.html");
 		</script>
 		
-		<script src="jquery.js"></script>
 	</head>
 	<body>
 		<div style="text-align:center">
@@ -51,7 +52,7 @@
 			
 			<br>
 			
-			<div class="contentContainer"></div>
+			<div id="contentContainerDiv"></div>
 		</div>
 	</body>
 </html>
