@@ -23,10 +23,30 @@ nav a
 
 @media only screen and (max-width: 768px) 
 {
+	html
+	{
+		padding: 0px;
+	}
+	
 	.sizeHide
 	{
 		display: none;
     }
+	
+	.topContent
+	{
+		padding-top: 50px;
+	}
+	
+	tr
+	{
+		width: 100%;
+	}
+	
+	img
+	{
+		width: 100%;
+	}
 }
 
 @media only screen and (min-width: 769px)
