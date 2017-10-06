@@ -7,6 +7,7 @@
 		<meta name="description" content="Authentic Congolese Cuisine">
 		<link href="styles.css" rel="stylesheet">
 		<script src="jquery.js"></script>
+		<script src="load.js"></script>
 				
 		<style>
 			placeholder a
@@ -23,7 +24,48 @@
 			
 			$(document).ready( function() 
 			{
+				//ajouter le contenu du corps
 		    	$("#contentContainerDiv").load("welcome.html");
+		    	
+		    	
+		    	//charger le javascript du menu hamburger
+		    	function loadJS( scrpt, fn )
+		    	{
+    				var jsElement = document.createElement('script'),
+    				body = document.body;
+
+    				jsElement.type = 'text/javascript';
+    				jsElement.src = scrpt;
+    				if ( typeof fn === 'function' ) 
+    				{
+      					jsElement.onload = fn();
+    				}
+    				body.appendChild(jsElement);
+  				}
+		    	
+		    	//charger le CSS du menu hamburger
+		    	function loadCSS( scrpt, fn ) 
+		    	{
+    				var cssElement = document.createElement('link'),
+    				body = document.head;
+    				cssElement.type = 'text/css';
+    				cssElement.media = 'all';
+    				cssElement.rel = 'stylesheet';
+    				cssElement.href = scrpt;
+    				if ( typeof fn === 'function' ) 
+    				{
+      					cssElement.onload = fn();
+    				}
+    				body.appendChild(cssElement);
+  				}
+		    	
+		    	//ajouter le menu hamburger
+		    	$(".menu").load("Embed/Hamburger/menu.html", function ()
+		    	{
+		    		loadJS('Embed/Hamburger/js/index.js');
+		    		loadJS('Embed/Hamburger/js/jquery.min.js');
+		    		loadCSS('Embed/Hamburger/css/style.css');
+		    	});
 			});
 		</script>
 		
@@ -37,18 +79,33 @@
 			</div>
 			
 			<div class="sizeHide">
-				<nav>
-					<a href="index.html">Welcome</a> •
-					<a href="placeholder.html">Specials</a> •
-					<a href="placeholder.html">Contact Us</a> •
-					<a href="placeholder.html">What's New</a> •
-					<a href="placeholder.html">Activities</a>
-				</nav>
+				<div class="deskNav">
+					<nav>
+						<a onclick="loadContent('welcome.html')" href="#">Welcome</a> •
+						<a onclick="loadContent('specials.html')" href="#">Specials</a> •
+						<a onclick="loadContent('contact.html')" href="#">Contact Us</a> •
+						<a onclick="loadContent('news.html')" href="#">What's New</a> •
+						<a onclick="loadContent('activities.html')" href="#">Activities</a>
+					</nav>
+				</div>
 			</div>
 			
 			<div class="sizeShow">
-				<div class="menu">
-					<iframe src="Embed/Hamburger/menu.html" name="navMenu" frameborder="0" allowfullscreen width="100%" height="100%" style="padding:0px; margin:0;" onclick="resizeIframe(this)" scrolling="no"></iframe>
+				<div class="menu" name="navMenu">
+					<link rel="stylesheet" href="Embed/Hamburger/css/style.css">
+					<a href="#" class="navicon"></a>
+					<div class="toggle">
+  						<ul>
+							<li><a onclick="loadContent('welcome.html')" href="#">Welcome</a></li>
+							<li><a onclick="loadContent('specials.html')" href="#">Specials</a></li>
+							<li><a onclick="loadContent('contact.html')" href="#">Contact Us</a></li>
+							<li><a onclick="loadContent('news.html')" href="#">What's New</a></li>
+							<li><a onclick="loadContent('activities.html')" href="#">Activities</a></li>
+						</ul>
+					</div>
+					
+					<script src='js/jquery.min.js'></script>
+					<script  src="js/index.js"></script>
 				</div>
 			</div>
 			
