@@ -21,6 +21,11 @@ a
 	text-decoration: none;
 }
 
+.langPick a
+{
+	color:blue;
+}
+
 @media only screen and (max-width: 768px) 
 {
 	html
