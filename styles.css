@@ -35,6 +35,14 @@ img
 {
 	/*enlever*/
 	filter: blur(5px);
+	
+	animation:spin 4s linear infinite;
+}
+/*enlever*/
+@keyframes spin 
+{
+	0%  {transform: rotate(0deg);}
+	100% {transform: rotate(360deg);}   
 }
 
 @media only screen and (max-width: 768px) 
