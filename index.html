@@ -67,6 +67,30 @@
 		    		loadCSS('Embed/Hamburger/css/style.css');
 		    	});
 			});
+			
+			
+			
+			
+			//enlever
+			function submit()
+			{
+				var fname = document.getElementsByName('fname')[0].value;
+				var mname = document.getElementsByName('mname')[0].value;
+				var lname = document.getElementsByName('lname')[0].value;
+				
+				var checkStatus = document.getElementById("deliveryCheck").checked;
+				
+				if (checkStatus = true)
+				{
+					alert("true");
+				}
+				else if (checkStatus = false)
+				{
+					alert("true");
+				}
+				
+				alert("Merci " + fname + " " + lname);
+			}
 		</script>
 	</head>
 	<body>
@@ -132,6 +156,32 @@
 				}
 			</script>
 			<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		<br style="margin:100px">
+		<!-- enlever-->
+		
+		<div class="container" style="display:block;">
+			<label><b>Delivery</b></label>
+			<input type="checkbox" name="deliveryCheck">
+			
+			<label><b>First Name</b></label>
+			<input type="text" placeholder="Enter first name" name="fname" required>
+
+			<label><b>Middle Name</b></label>
+			<input type="text" placeholder="Enter middle name" name="mname" required>
+			
+			<label><b>Last Name</b></label>
+			<input type="text" placeholder="Enter last name" name="lname" required>
+
+			<button type="submit" onclick="submit();">go</button>
 		</div>
 	</footer>
 </html>
