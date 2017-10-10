@@ -3,6 +3,16 @@ html
 	background-color: #FFFCF2;
 	font-family: carrois;
 	padding: 50px;
+	
+	/*enlever*/
+	/*image sous creative commons sans attribution*/
+	background-image: url('images/sped.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+	
+	cursor: url('images/ugly.cur'), default;
 }
 
 hr
@@ -19,6 +29,12 @@ a
 {
 	color: black;
 	text-decoration: none;
+}
+
+img 
+{
+	/*enlever*/
+	filter: blur(5px);
 }
 
 @media only screen and (max-width: 768px) 
