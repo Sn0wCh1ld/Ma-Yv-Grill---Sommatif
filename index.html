@@ -7,7 +7,7 @@
 		<meta name="description" content="Authentic Congolese Cuisine">
 		<link href="styles.css" rel="stylesheet">
 		<script src="jquery.js"></script>
-		<script src="load.js"></script>
+		<script src="charger.js"></script>
 				
 		<style>
 			placeholder a
@@ -29,7 +29,7 @@
 		    	
 		    	
 		    	//charger le javascript du menu hamburger
-		    	function loadJS( scrpt, fn )
+		    	function chargerJS( scrpt, fn )
 		    	{
     				var jsElement = document.createElement('script'),
     				body = document.body;
@@ -44,7 +44,7 @@
   				}
 		    	
 		    	//charger le CSS du menu hamburger
-		    	function loadCSS( scrpt, fn ) 
+		    	function chargerCSS( scrpt, fn ) 
 		    	{
     				var cssElement = document.createElement('link'),
     				body = document.head;
@@ -62,10 +62,17 @@
 		    	//ajouter le menu hamburger
 		    	$(".menu").load("Embed/Hamburger/menu.html", function ()
 		    	{
-		    		loadJS('Embed/Hamburger/js/index.js');
-		    		loadJS('Embed/Hamburger/js/jquery.min.js');
-		    		loadCSS('Embed/Hamburger/css/style.css');
+		    		chargerJS('Embed/Hamburger/js/index.js');
+		    		chargerJS('Embed/Hamburger/js/jquery.min.js');
+		    		chargerCSS('Embed/Hamburger/css/style.css');
 		    	});
+		    	
+		    	
+		    	
+		    	
+		    	//enlever
+		    	//choisir btc par default
+		    	document.getElementById("btc").checked = true;
 			});
 			
 			
@@ -74,22 +81,52 @@
 			//enlever
 			function submit()
 			{
-				var fname = document.getElementsByName('fname')[0].value;
-				var mname = document.getElementsByName('mname')[0].value;
-				var lname = document.getElementsByName('lname')[0].value;
+				//noms
+				var pnom = document.getElementsByName('pnom')[0].value;
+				var mnom = document.getElementsByName('mnom')[0].value;
+				var dnom = document.getElementsByName('dnom')[0].value;
 				
-				var checkStatus = document.getElementById("deliveryCheck").checked;
+				var nomString = "Nom: " + pnom + " " + dnom;
 				
-				if (checkStatus = true)
+				//livraison
+				var livraison = document.getElementById("liv");
+				var livraisonString = "Livraison: ";
+				if (livraison.checked)
 				{
-					alert("true");
+					livraisonString = livraisonString + "Oui";
 				}
-				else if (checkStatus = false)
+				else
 				{
-					alert("true");
+					livraisonString = livraisonString + "Non";
 				}
 				
-				alert("Merci " + fname + " " + lname);
+				//paiement
+				var bitcoin = document.getElementById("btc");
+				var paiementString = "Paiement: ";
+				if (bitcoin.checked)
+				{
+					paiementString = paiementString + "Bitcoin";
+				}
+				else
+				{
+					paiementString = paiementString + "Paypal";
+				}
+				
+				alert("Merci " + pnom + " " + dnom);
+
+
+				//téléchargement
+				var texteTotal = nomString + "\n" + livraisonString + "\n" + paiementString;
+				var lien = document.body.appendChild(document.createElement("a"));
+				lien.download = "exportation.txt";
+				lien.href = "data:text/plain;base64," + btoa(texteTotal);
+				lien.innerHTML = "";
+				lien.id = "lienACliquer";
+				lien.click();
+				
+				//enlever le lien
+				var elem = document.getElementById('lienACliquer');
+    			elem.parentNode.removeChild(elem);
 			}
 		</script>
 	</head>
@@ -105,11 +142,11 @@
 			<div class="sizeHide">
 				<div class="deskNav">
 					<nav>
-						<a onclick="loadContent('welcome.html')" href="#">Welcome</a> •
-						<a onclick="loadContent('specials.html')" href="#">Specials</a> •
-						<a onclick="loadContent('contact.html')" href="#">Contact Us</a> •
-						<a onclick="loadContent('news.html')" href="#">What's New</a> •
-						<a onclick="loadContent('activities.html')" href="#">Activities</a>
+						<a onclick="chargerContenu('welcome.html')" href="#">Welcome</a> •
+						<a onclick="chargerContenu('specials.html')" href="#">Specials</a> •
+						<a onclick="chargerContenu('contact.html')" href="#">Contact Us</a> •
+						<a onclick="chargerContenu('news.html')" href="#">What's New</a> •
+						<a onclick="chargerContenu('activities.html')" href="#">Activities</a>
 					</nav>
 				</div>
 			</div>
@@ -121,11 +158,11 @@
 					<a href="#" class="navicon"></a>
 					<div class="toggle">
   						<ul>
-							<li><a onclick="loadContent('welcome.html')" href="#">Welcome</a></li>
-							<li><a onclick="loadContent('specials.html')" href="#">Specials</a></li>
-							<li><a onclick="loadContent('contact.html')" href="#">Contact Us</a></li>
-							<li><a onclick="loadContent('news.html')" href="#">What's New</a></li>
-							<li><a onclick="loadContent('activities.html')" href="#">Activities</a></li>
+							<li><a onclick="chargerContenu('welcome.html')" href="#">Welcome</a></li>
+							<li><a onclick="chargerContenu('specials.html')" href="#">Specials</a></li>
+							<li><a onclick="chargerContenu('contact.html')" href="#">Contact Us</a></li>
+							<li><a onclick="chargerContenu('news.html')" href="#">What's New</a></li>
+							<li><a onclick="chargerContenu('activities.html')" href="#">Activities</a></li>
 						</ul>
 					</div>
 					
@@ -164,24 +201,27 @@
 		
 		
 		
-		
-		<br style="margin:100px">
 		<!-- enlever-->
+		<br style="margin:100px">
 		
-		<div class="container" style="display:block;">
-			<label><b>Delivery</b></label>
-			<input type="checkbox" name="deliveryCheck">
-			
+		<div class="container" style="text-align:center">
 			<label><b>First Name</b></label>
-			<input type="text" placeholder="Enter first name" name="fname" required>
+			<input type="text" placeholder="Enter first name" name="pnom" required><br><br>
 
 			<label><b>Middle Name</b></label>
-			<input type="text" placeholder="Enter middle name" name="mname" required>
+			<input type="text" placeholder="Enter middle name" name="mnom" required><br><br>
 			
 			<label><b>Last Name</b></label>
-			<input type="text" placeholder="Enter last name" name="lname" required>
+			<input type="text" placeholder="Enter last name" name="dnom" required><br><br>
+			
+			<label><b>Delivery</b></label>
+			<input type="checkbox" id="liv" required><br><br>
+			
+			<label><b>Payment type</b></label>
+			<INPUT TYPE="Radio" Name="paiement" Value="BTC" id="btc" required>Bitcoin
+			<INPUT TYPE="Radio" Name="paiement" Value="PayPal" required>Paypal<br><br>
 
-			<button type="submit" onclick="submit();">go</button>
+			<button type="submit" onclick="submit();">Go</button>
 		</div>
 	</footer>
 </html>

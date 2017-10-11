@@ -1,4 +1,4 @@
-function loadContent(selectedPage)
+function chargerContenu(selectedPage)
 {
 	$("#contentContainerDiv").load(selectedPage);
 }
