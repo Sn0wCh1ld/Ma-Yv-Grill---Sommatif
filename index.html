@@ -66,68 +66,7 @@
 		    		chargerJS('Embed/Hamburger/js/jquery.min.js');
 		    		chargerCSS('Embed/Hamburger/css/style.css');
 		    	});
-		    	
-		    	
-		    	
-		    	
-		    	//enlever
-		    	//choisir btc par default
-		    	document.getElementById("btc").checked = true;
 			});
-			
-			
-			
-			
-			//enlever
-			function submit()
-			{
-				//noms
-				var pnom = document.getElementsByName('pnom')[0].value;
-				var mnom = document.getElementsByName('mnom')[0].value;
-				var dnom = document.getElementsByName('dnom')[0].value;
-				
-				var nomString = "Nom: " + pnom + " " + dnom;
-				
-				//livraison
-				var livraison = document.getElementById("liv");
-				var livraisonString = "Livraison: ";
-				if (livraison.checked)
-				{
-					livraisonString = livraisonString + "Oui";
-				}
-				else
-				{
-					livraisonString = livraisonString + "Non";
-				}
-				
-				//paiement
-				var bitcoin = document.getElementById("btc");
-				var paiementString = "Paiement: ";
-				if (bitcoin.checked)
-				{
-					paiementString = paiementString + "Bitcoin";
-				}
-				else
-				{
-					paiementString = paiementString + "Paypal";
-				}
-				
-				alert("Merci " + pnom + " " + dnom);
-
-
-				//téléchargement
-				var texteTotal = nomString + "\n" + livraisonString + "\n" + paiementString;
-				var lien = document.body.appendChild(document.createElement("a"));
-				lien.download = "exportation.txt";
-				lien.href = "data:text/plain;base64," + btoa(texteTotal);
-				lien.innerHTML = "";
-				lien.id = "lienACliquer";
-				lien.click();
-				
-				//enlever le lien
-				var elem = document.getElementById('lienACliquer');
-    			elem.parentNode.removeChild(elem);
-			}
 		</script>
 	</head>
 	<body>
@@ -193,35 +132,6 @@
 				}
 			</script>
 			<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-		</div>
-		
-		
-		
-		
-		
-		
-		
-		<!-- enlever-->
-		<br style="margin:100px">
-		
-		<div class="container" style="text-align:center">
-			<label><b>First Name</b></label>
-			<input type="text" placeholder="Enter first name" name="pnom" required><br><br>
-
-			<label><b>Middle Name</b></label>
-			<input type="text" placeholder="Enter middle name" name="mnom" required><br><br>
-			
-			<label><b>Last Name</b></label>
-			<input type="text" placeholder="Enter last name" name="dnom" required><br><br>
-			
-			<label><b>Delivery</b></label>
-			<input type="checkbox" id="liv" required><br><br>
-			
-			<label><b>Payment type</b></label>
-			<INPUT TYPE="Radio" Name="paiement" Value="BTC" id="btc" required>Bitcoin
-			<INPUT TYPE="Radio" Name="paiement" Value="PayPal" required>Paypal<br><br>
-
-			<button type="submit" onclick="submit();">Go</button>
 		</div>
 	</footer>
 </html>
